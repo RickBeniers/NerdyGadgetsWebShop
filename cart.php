@@ -53,80 +53,80 @@ $cart = getCart();
 print_r($cart);
 
 
-
 //producten ophalen vanuit array --> tonen van de producten
+if(isset($_SESSION['cart'])) {
+    for ($i = 0; $i < count($cart);) { //$i=0 das de rede hiervoor
+        foreach ($cart as $x => $blablabla) {
 
-for ($i = 0; $i < count($cart);) { //$i=0 das de rede hiervoor
-    foreach ($cart as $x=>$blablabla) {
-
-        if ($i != 0) {
-            $sql_cart_invoer .= "OR ";
+            if ($i != 0) {
+                $sql_cart_invoer .= "OR ";
+            }
+            $i++;
+            $sql_cart_invoer .= 'SI.StockItemID="' . $x . '"';
         }
-        $i++;
-        $sql_cart_invoer .= 'SI.StockItemID="' . $x . '"';
     }
-}
-if ($cart !== "") {
-    $Query = "
-           SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, TaxRate, RecommendedRetailPrice,
-           ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
-           QuantityOnHand,
-           (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
-           (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
-           FROM stockitems SI
-           JOIN stockitemholdings SIH USING(stockitemid)
-           JOIN stockitemstockgroups USING(StockItemID)
-           JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
-           WHERE ".$sql_cart_invoer."
-           GROUP BY StockItemID
-           ";
-    $Connection=connectToDatabase();
-    $result = mysqli_query($Connection, $Query);
 
-}
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    $naam = $row["StockItemName"];
-    print($naam . "<br>");
+    if ($cart != "") {
+        $Query = "
+               SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, TaxRate, RecommendedRetailPrice,
+               ROUND(SI.TaxRate * SI.RecommendedRetailPrice / 100 + SI.RecommendedRetailPrice,2) as SellPrice,
+               QuantityOnHand,
+               (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
+               (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+               FROM stockitems SI
+               JOIN stockitemholdings SIH USING(stockitemid)
+               JOIN stockitemstockgroups USING(StockItemID)
+               JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
+               WHERE ".$sql_cart_invoer."
+               GROUP BY StockItemID
+               ";
+        $Connection=connectToDatabase();
+        $result = mysqli_query($Connection, $Query);
 
-}
+    }
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $naam = $row["StockItemName"];
+        print($naam . "<br>");
 
-?>
-<div id="ResultsArea" class="Cart">
-    <?php
-    if (isset($result)) {
-        foreach ($result as $row) {
-            ?>
+    }
 
-            <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
+    ?>
+    <div id="ResultsArea" class="Cart">
+        <?php
+        if (isset($result)) {
+            foreach ($result as $row) {
+                ?>
 
-                <div id="ProductFrameCart">
-                    <?php
-                    if (isset($row['ImagePath'])) { ?>
-                        <div class="ImgFrameCart"
-                             style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
-                    <?php } else if (isset($row['BackupImagePath'])) { ?>
-                        <div class="ImgFrameCart"
-                             style="background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
-                    <?php }
-                    ?>
+                <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 
-                    <div id="StockItemFrameRight">
-                        <div class="CenterPriceLeftChild">
-                            <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
-                            <h6>Inclusief BTW </h6>
+                    <div id="ProductFrameCart">
+                        <?php
+                        if (isset($row['ImagePath'])) { ?>
+                            <div class="ImgFrameCart"
+                                 style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
+                        <?php } else if (isset($row['BackupImagePath'])) { ?>
+                            <div class="ImgFrameCart"
+                                 style="background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
+                        <?php }
+                        ?>
+
+                        <div id="StockItemFrameRight">
+                            <div class="CenterPriceLeftChild">
+                                <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
+                                <h6>Inclusief BTW </h6>
+                            </div>
                         </div>
+                        <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
+                        <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
+                        <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
+                        <h4 class="ItemQuantity"><?php print getVoorraadTekst($row["QuantityOnHand"]); ?></h4>
                     </div>
-                    <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
-                    <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
-                    <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
-                    <h4 class="ItemQuantity"><?php print getVoorraadTekst($row["QuantityOnHand"]); ?></h4>
-                </div>
-            </a>
+                </a>
 
 
 
-        <?php }}
-
+            <?php }}
+        }
 //aantal producten in winkelmand aanpassen (input field + "-" en "+" knoppen)
 
 
