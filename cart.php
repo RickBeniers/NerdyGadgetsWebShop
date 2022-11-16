@@ -185,6 +185,7 @@ if (isset($_GET['max'])) {
         $BTW = 0;
         $prijsBTW = 0;
         $prijs = 0;
+
         if(isset($result)){
             foreach($result as $row){
                 $prijs = $prijs+($row["RecommendedRetailPrice"]*$cart[$row["StockItemID"]]);
