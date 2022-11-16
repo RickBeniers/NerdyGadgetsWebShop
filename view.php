@@ -17,6 +17,8 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
             </div>
         <?php }
         ?>
+
+
         <div id="ArticleHeader">
             <?php
             if (isset($StockItemImage)) {
@@ -80,6 +82,24 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $StockItem['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
+
+
+                        <!-- Toevoegen aan winkelmand knop -->
+                        <form method="post">
+                            <div>
+                                <input type="number" name="stockItemID" value="<?php print($_GET["id"]) ?>" hidden >
+                                <input type="submit" name="submit" value="In winkelwagen" style="right: 1px;top: 135px;position: absolute;alignment: bottom;padding: 12px 32px;background: #686ef7;border-radius: 8px;color: white">
+                            </div>
+                        </form>
+
+<!--                        --><?php
+                        if (isset($_POST["submit"])) {
+                            $stockItemID = $_POST["stockItemID"];
+                            addProductToCart($stockItemID);
+                            print("Het product is toegevoegd aan het winkelmandje <a> </a>");
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>

@@ -29,4 +29,3 @@ $(window).on('load resize', function () {
         document.getElementById("Header").children[1].children[0].children[(document.getElementById("Header").children[1].children[0].children.length) - y].style.display = "";
     }
 });
-

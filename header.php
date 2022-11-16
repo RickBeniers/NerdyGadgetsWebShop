@@ -2,6 +2,8 @@
 <?php
 session_start();
 include "database.php";
+include "Cartfuncties.php";
+
 $databaseConnection = connectToDatabase();
 ?>
 <!DOCTYPE html>
@@ -49,6 +51,7 @@ $databaseConnection = connectToDatabase();
 <!-- code voor US3: zoeken -->
         <ul id="ul-class-navigation">
             <li>
+                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i> Winkelmandje</a>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
         </ul>
@@ -57,5 +60,3 @@ $databaseConnection = connectToDatabase();
     <div class="row" id="Content">
         <div class="col-12">
             <div id="SubContent">
-
-

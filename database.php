@@ -1,12 +1,12 @@
 <!-- dit bestand bevat alle code die verbinding maakt met de database -->
 <?php
-$filterOnColour = 0;
+
 function connectToDatabase() {
     $Connection = null;
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions
     try {
-        $Connection = mysqli_connect("localhost", "root", "Rick3109", "nerdygadgets");
+        $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
         mysqli_set_charset($Connection, 'latin1');
         $DatabaseAvailable = true;
     } catch (mysqli_sql_exception $e) {
@@ -16,8 +16,10 @@ function connectToDatabase() {
         ?><h2>Website wordt op dit moment onderhouden.</h2><?php
         die();
     }
+
     return $Connection;
 }
+
 function getHeaderStockGroups($databaseConnection) {
     $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
@@ -32,6 +34,7 @@ function getHeaderStockGroups($databaseConnection) {
     $HeaderStockGroups = mysqli_stmt_get_result($Statement);
     return $HeaderStockGroups;
 }
+
 function getStockGroups($databaseConnection) {
     $Query = "
             SELECT StockGroupID, StockGroupName, ImagePath
@@ -47,6 +50,7 @@ function getStockGroups($databaseConnection) {
     $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
     return $StockGroups;
 }
+
 function getStockItem($id, $databaseConnection) {
     $Result = null;
 
@@ -75,6 +79,7 @@ function getStockItem($id, $databaseConnection) {
 
     return $Result;
 }
+
 function getStockItemImage($id, $databaseConnection) {
 
     $Query = "

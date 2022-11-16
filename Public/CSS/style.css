@@ -97,6 +97,13 @@ ul#ul-class-navigation li {
     margin-top: 10px;
     padding: 20px;
 }
+#ResultsArea.Cart  {
+    width: 78%;
+    margin-left: 21%;
+    float: left;
+    position: sticky;
+    /*border: 1px solid deeppink;*/
+}
 #ResultsArea.Browse  {
     width: 78%;
     margin-left: 21%;
@@ -121,6 +128,68 @@ ul#ul-class-navigation li {
     margin-right: 10px
 }
 .ImgFrame img {
+    width: 230px;
+    height: 230px;
+}
+#ProductFrameCart {
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    position: relative;
+    padding: 1px;
+    border-bottom: 1px solid #fff;
+}
+#VoorraadWijzigen {
+    width: 100px;
+    height: 20%;
+    position: absolute;
+    left: 250px;
+    top: 170px;
+}
+#VoorraadWijzigen2 {
+    width: 50px;
+    height: 20%;
+    position: absolute;
+    left: 300px;
+    top: 170px;
+}
+#VoorraadWijzigen3 {
+    width: 100px;
+    height: 20%;
+    position: absolute;
+    left: 350px;
+    top: 170px;
+}
+.buttons {
+    width: 200px;
+    margin: 0 auto;
+    display: inline;}
+#testtest {
+    position: relative;
+    width: 100%;
+}
+#ItemsInCart {
+    display: grid;
+    position: absolute;
+    width: 10%;
+    background-color: rgba(35, 40, 47, 0.8);
+    left: 275px;
+    top: 105px;
+    border: 1px solid #fff;
+    margin-left: 5px;
+    margin-top: 10px;
+    padding: 5px;
+}
+.ImgFrameCart {
+    width: 230px;
+    height: 230px;
+    background-color: rgb(36, 41, 143);
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px
+}
+.ImgFrame imgCart {
     width: 230px;
     height: 230px;
 }
@@ -236,7 +305,7 @@ ul#ul-class-navigation li {
     position: absolute;
 }
 #LogoImage {
-    background-image: url("../ProductIMGHighRes/NerdyGadgetsLogo.png");
+    background-image: url("../ProductIMGHighRes/NerdyGadgetsLogo2.png");
     width: 250px;
     height: 90px;
     margin: 55px 55px 55px 10%;
@@ -268,7 +337,9 @@ ul#ul-class-price li {
 .HrefDecoration i.search {
     color: #676EFF;
 }
-
+.HrefDecoration i.fa-shopping-cart {
+    color: #676EFF;
+}
 .HrefDecoration:hover, .HrefDecoration:active {
     text-decoration: none;
     color: #ccc;
@@ -477,4 +548,10 @@ ul#ul-class-price li {
     background: rgb(36, 41, 143);
     border: 1px rgb(98, 158, 255) solid;
     color: #fff;
+}
+#winkelhead{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,0%);; font-size: 40px;
 }
