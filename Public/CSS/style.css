@@ -139,27 +139,6 @@ ul#ul-class-navigation li {
     padding: 1px;
     border-bottom: 1px solid #fff;
 }
-#VoorraadWijzigen {
-    width: 100px;
-    height: 20%;
-    position: absolute;
-    left: 250px;
-    top: 170px;
-}
-#VoorraadWijzigen2 {
-    width: 50px;
-    height: 20%;
-    position: absolute;
-    left: 300px;
-    top: 170px;
-}
-#VoorraadWijzigen3 {
-    width: 100px;
-    height: 20%;
-    position: absolute;
-    left: 350px;
-    top: 170px;
-}
 .buttons {
     width: 200px;
     margin: 0 auto;

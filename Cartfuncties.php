@@ -23,6 +23,23 @@ function addProductToCart($stockItemID, $aantal){
         $cart[$stockItemID] = 1;                    //zo nee: key toevoegen en aantal op 1 zetten.
     }
 
-    saveCart($cart);                            // werk de "gedeelde" $_SESSION["cart"] bij met de bijgewerkte cart
+    saveCart($cart);                                 // werk de "gedeelde" $_SESSION["cart"] bij met de bijgewerkte cart
+    if($cart[$stockItemID]<=0){
+        deleteProductFromCart($stockItemID);            //Controleer of er minder dan of 0 producten in cart zitten en als dat zo is delete item.
+    }
 }
 
+function deleteProductFromCart($stockItemID){
+    $cart = getcart();
+
+    if(array_key_exists($stockItemID, $cart)){
+        $tempCart = $cart;
+        $cart=array();
+        foreach($tempCart as $item => $aantal){
+            if($item != $stockItemID){
+                $cart[$item]=$aantal;
+            }
+        }
+        saveCart($cart);
+    }
+}

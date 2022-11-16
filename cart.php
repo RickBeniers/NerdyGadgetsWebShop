@@ -24,41 +24,23 @@ function getVoorraadTekst($actueleVoorraad)
 		return "Voorraad: $actueleVoorraad";
 	}
 }
+//aantal producten in winkelmand aanpassen (input field + "-" en "+" knoppen)
+if (isset($_GET['hoeveel'])) {}
 
-//WELKE GEGEVENS HEBBEN WE NODIG?
-//database:
-//artikelnummer
-//productnaam
-//aantal op voorraad
-//prijs
-//plaatje
+if (isset($_GET['min'])) {
+    addProductToCart($_GET['id'], -1);}
 
-//session:
-//aantal in winkelwagen
-//product verwijderen uit winkelwagen
-//totaalprijs --> automatisch aanpassen a.d.h.v. aantal producten
+if (isset($_GET['max'])) {
+    addProductToCart($_GET['id'], 1);}
 
-// Gegevens ophalen
-//$_SESSION['cart'][] = array(
-//    '' => $_POST[''],
-//    '' => $_POST['']
-//);
-//
-//foreach($_SESSION['cart'] as $cart) {
-//    print("");
-//}
+//product uit winkelmand verwijderen (knop)
+if(isset($_GET["delete"])){
+    deleteProductFromCart($_GET['id']);}
 
-
-//"Producten in winkelmand:" tekst toevoegen bovenaan de winkelmand pagina (boven de producten in winkelmand)
-//print("<div id='winkelhead'>
-//        Producten in winkelmand:
-//    </div>");
 $cart = getCart();
-print_r($cart);
-
 
 //producten ophalen vanuit array --> tonen van de producten
-if (isset($_SESSION['cart'])) {
+if (!empty($_SESSION['cart'])) {
 for ($i = 0; $i < count($cart);) { //$i=0 das de rede hiervoor
 	foreach ($cart as $x => $blablabla) {
 
@@ -88,26 +70,13 @@ if ($cart != "") {
 	$result = mysqli_query($Connection, $Query);
 
 }
-
-
-if (isset($_GET['hoeveel'])) {}
-
-if (isset($_GET['min'])) {
-    addProductToCart($_GET['id'], -1);
-    print("test-");
-
-}
-if (isset($_GET['max'])) {
-    addProductToCart($_GET['id'], 1);
-    print("test+");
-}
 ?>
 <div id="ResultsArea" class="Cart">
 	<?php
 	if (isset($result)) {
 		foreach ($result as $row) {
 			?>
-			<a class="ListItem"> <!--href='view.php?id=<?php //print $row['StockItemID']; ?>'-->
+			<a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 				<div id="ProductFrameCart">
 					<?php
 					if (isset($row['ImagePath'])) { ?>
@@ -125,28 +94,6 @@ if (isset($_GET['max'])) {
 							<h6>Inclusief BTW </h6>
 						</div>
 					</div>
-					<!--					<div id="ItemsInCart">-->
-					<!--						<label>Aantal:</label>-->
-					<!--						<select name="aantalItems" id="aantalItems">-->
-					<!--							--><?php
-					//							$testt = array();
-					//							for ($i = 1; $i <= 5; $i++) {
-					//								print("<option name='aantal$i' value='aantal'>$i</option>");
-					//
-					//								if (isset($_GET['aantal' . $i])) {
-					//									array_push($testt, $i);
-					//									$_SESSION['test'] = $testt;
-					//								} else {
-					//									$testt = array();
-					//									$_SESSION['test'] = $testt;
-					//								}
-					//							}
-					//							?>
-					<!--						</select>-->
-					<!--						--><?php
-					////						print($_GET['aantaltest']);
-					//						?>
-					<!--					</div>-->
 
 					<h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
 					<p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
@@ -154,6 +101,10 @@ if (isset($_GET['max'])) {
 
                     <p style="display: inline-flex">
                     <form action="cart.php" method="GET">
+                        <!--product uit winkelmand verwijderen (knop)-->
+                        <input type="submit" name="delete" value="rm" style="height:50px;width:50px">
+                        <!--aantal producten in winkelmand aanpassen (input field + "-" en "+" knoppen)-->
+
                         <input type="submit" name="min" value="-" style="height:50px;width:50px">
 
 
@@ -170,17 +121,6 @@ if (isset($_GET['max'])) {
         <?php }
 	}
 	}
-
-
-
-
-//    print_r($cart);
-	//aantal producten in winkelmand aanpassen (input field + "-" en "+" knoppen)
-
-
-	//product uit winkelmand verwijderen (knop)
-
-
 	//totaalprijs berekenen + tonen van de totaalprijs
         $BTW = 0;
         $prijsBTW = 0;
