@@ -530,8 +530,7 @@ ul#ul-class-price li {
     color: #fff;
 }
 #winkelhead{
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%,0%);; font-size: 40px;
+    position: static;
+    text-align: center;
+    font-size: 100px;
 }
