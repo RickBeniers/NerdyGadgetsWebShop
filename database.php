@@ -1,6 +1,5 @@
 <!-- dit bestand bevat alle code die verbinding maakt met de database -->
 <?php
-
 function connectToDatabase() {
     $Connection = null;
 
@@ -19,7 +18,6 @@ function connectToDatabase() {
 
     return $Connection;
 }
-
 function getHeaderStockGroups($databaseConnection) {
     $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
@@ -34,7 +32,6 @@ function getHeaderStockGroups($databaseConnection) {
     $HeaderStockGroups = mysqli_stmt_get_result($Statement);
     return $HeaderStockGroups;
 }
-
 function getStockGroups($databaseConnection) {
     $Query = "
             SELECT StockGroupID, StockGroupName, ImagePath
@@ -50,7 +47,6 @@ function getStockGroups($databaseConnection) {
     $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
     return $StockGroups;
 }
-
 function getStockItem($id, $databaseConnection) {
     $Result = null;
 
@@ -79,7 +75,6 @@ function getStockItem($id, $databaseConnection) {
 
     return $Result;
 }
-
 function getStockItemImage($id, $databaseConnection) {
 
     $Query = "
