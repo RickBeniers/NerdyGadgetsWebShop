@@ -1,6 +1,11 @@
 <!-- dit bestand bevat alle code voor de pagina die één product laat zien -->
 <?php
-include __DIR__ . "/header.php";
+session_start();
+include_once "database.php";
+include_once "Cartfuncties.php";
+include_once "header.php";
+
+$cart = getCart();
 
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
@@ -96,6 +101,7 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                         if (isset($_POST["submit"])) {
                             $stockItemID = $_POST["stockItemID"];
                             addProductToCart($stockItemID, 1);
+	                        print_r($cart);
                             print("Het product is toegevoegd aan het winkelmandje <a> </a>");
                         }
                         ?>
