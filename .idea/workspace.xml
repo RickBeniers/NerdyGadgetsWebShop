@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="v6">
+    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="v7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Public/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Public/CSS/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +71,7 @@
       <workItem from="1668602653823" duration="4532000" />
       <workItem from="1668670445034" duration="6483000" />
       <workItem from="1668677668627" duration="1146000" />
+      <workItem from="1669277259190" duration="1589000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1668594724851</created>
@@ -122,7 +125,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="NerdyGadgets/Janko" />
                       </list>
                     </value>
                   </entry>

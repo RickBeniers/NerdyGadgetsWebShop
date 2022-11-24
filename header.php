@@ -1,9 +1,24 @@
 <!-- de inhoud van dit bestand wordt bovenaan elke pagina geplaatst -->
 <?php
-session_start();
-include "database.php";
-include "Cartfuncties.php";
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+include_once "database.php";
+include_once "Cartfuncties.php";
 
+$cart = getCart();
+//session maken die bijhoudt hoe veel producten in je winkelmandje zitten
+if(empty($cart)) {
+	$_SESSION['aantalInWinkelmand'] = 0;
+}
+
+$aantal = 0;
+if (isset($_SESSION['aantalInWinkelmand'])) {
+	foreach ($cart as $items) {
+		$aantal += $items;
+		$_SESSION['aantalInWinkelmand'] = $aantal;
+	}
+}
 $databaseConnection = connectToDatabase();
 ?>
 <!DOCTYPE html>
@@ -51,7 +66,14 @@ $databaseConnection = connectToDatabase();
 <!-- code voor US3: zoeken -->
         <ul id="ul-class-navigation">
             <li>
-                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i> Winkelmandje</a>
+                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i></a>
+	            <span class="badge badge-warning" id="lblCartCount"> <?php
+		            if (isset($_SESSION['aantalInWinkelmand'])) {
+		            print($_SESSION['aantalInWinkelmand']);
+		            } else {
+						echo "0";
+		            } ?>
+		             </span>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
         </ul>

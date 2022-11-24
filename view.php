@@ -1,6 +1,19 @@
 <!-- dit bestand bevat alle code voor de pagina die één product laat zien -->
 <?php
-include __DIR__ . "/header.php";
+session_start();
+include_once "database.php";
+include_once "Cartfuncties.php";
+
+$cart = getCart();
+
+if (isset($_POST["submit"])) {
+	$stockItemID = $_POST["stockItemID"];
+	addProductToCart($stockItemID, 1);
+	print_r($cart);
+	print("Het product is toegevoegd aan het winkelmandje <a> </a>");
+}
+
+include_once "header.php";
 
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
@@ -91,15 +104,6 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                                 <input type="submit" name="submit" value="In winkelwagen" style="right: 1px;top: 135px;position: absolute;alignment: bottom;padding: 12px 32px;background: #686ef7;border-radius: 8px;color: white">
                             </div>
                         </form>
-
-<!--                        --><?php
-                        if (isset($_POST["submit"])) {
-                            $stockItemID = $_POST["stockItemID"];
-                            addProductToCart($stockItemID, 1);
-                            print("Het product is toegevoegd aan het winkelmandje <a> </a>");
-                        }
-                        ?>
-
                     </div>
                 </div>
             </div>
