@@ -51,7 +51,14 @@ $databaseConnection = connectToDatabase();
 <!-- code voor US3: zoeken -->
         <ul id="ul-class-navigation">
             <li>
-                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i> Winkelmandje</a>
+                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i></a>
+	            <span class="badge badge-warning" id="lblCartCount"> <?php
+		            if (isset($_SESSION['aantalInWinkelmand'])) {
+		            print($_SESSION['aantalInWinkelmand']);
+		            } else {
+						echo "0";
+		            } ?>
+		             </span>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
         </ul>
@@ -60,3 +67,5 @@ $databaseConnection = connectToDatabase();
     <div class="row" id="Content">
         <div class="col-12">
             <div id="SubContent">
+
+

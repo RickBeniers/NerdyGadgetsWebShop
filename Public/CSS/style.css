@@ -139,27 +139,6 @@ ul#ul-class-navigation li {
     padding: 1px;
     border-bottom: 1px solid #fff;
 }
-#VoorraadWijzigen {
-    width: 100px;
-    height: 20%;
-    position: absolute;
-    left: 250px;
-    top: 170px;
-}
-#VoorraadWijzigen2 {
-    width: 50px;
-    height: 20%;
-    position: absolute;
-    left: 300px;
-    top: 170px;
-}
-#VoorraadWijzigen3 {
-    width: 100px;
-    height: 20%;
-    position: absolute;
-    left: 350px;
-    top: 170px;
-}
 .buttons {
     width: 200px;
     margin: 0 auto;
@@ -340,6 +319,7 @@ ul#ul-class-price li {
 .HrefDecoration i.fa-shopping-cart {
     color: #676EFF;
 }
+
 .HrefDecoration:hover, .HrefDecoration:active {
     text-decoration: none;
     color: #ccc;
@@ -550,8 +530,29 @@ ul#ul-class-price li {
     color: #fff;
 }
 #winkelhead{
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%,0%);; font-size: 40px;
+    position: static;
+    text-align: center;
+    font-size: 100px;
+}
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: red;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: 100%;
+    margin-left: -10px;
 }

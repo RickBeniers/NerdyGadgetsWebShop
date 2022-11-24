@@ -95,7 +95,7 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
 <!--                        --><?php
                         if (isset($_POST["submit"])) {
                             $stockItemID = $_POST["stockItemID"];
-                            addProductToCart($stockItemID);
+                            addProductToCart($stockItemID, 1);
                             print("Het product is toegevoegd aan het winkelmandje <a> </a>");
                         }
                         ?>
