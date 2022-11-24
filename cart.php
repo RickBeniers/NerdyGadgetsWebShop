@@ -2,7 +2,9 @@
 <?php
 //session_start();
 
-include __DIR__ . "/header.php";
+session_start();
+include_once "database.php";
+include_once "Cartfuncties.php";
 //include "database.php";
 
 //$databaseConnection = connectToDatabase();
@@ -43,12 +45,9 @@ if (isset($_GET["delete"])) {
 }
 
 
+include __DIR__ . "/header.php";
 //totaalprijs berekenen + tonen van de totaalprijs
 $cart = getCart();
-//als cart empty is moet het winkelwagentje 0 weergeven
-if(empty($cart)) {
-	$_SESSION['aantalInWinkelmand'] = 0;
-}
 
 ?>
 <div class="row">
@@ -75,7 +74,6 @@ if(empty($cart)) {
 				$sql_cart_invoer .= 'SI.StockItemID="' . $x . '"';
 			}
 		}
-
 		if ($cart != "") {
 			$Query = "
                SELECT SI.StockItemID, SI.StockItemName, SI.MarketingComments, TaxRate, RecommendedRetailPrice,
@@ -99,6 +97,7 @@ if(empty($cart)) {
 			<?php
 			if (isset($result)) {
 				foreach ($result as $row) {
+
 					//session maken die bijhoudt hoe veel producten in je winkelmandje zitten
 					$aantal = 0;
 					if (isset($_SESSION['aantalInWinkelmand'])) {
@@ -107,6 +106,7 @@ if(empty($cart)) {
 							$_SESSION['aantalInWinkelmand'] = $aantal;
 						}
 					}
+
 					?>
 					<a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 						<div id="ProductFrameCart">
