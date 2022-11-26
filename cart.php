@@ -167,6 +167,13 @@ $cart = getCart();
 		<h4>U betaalt: <?php print("€" . number_format($prijsBTW, 2)); ?></h4>
 	</div>
 </div>
+<div class="row">
+	<div class="col-2">
+		<form action="bestelling.php">
+			<input type="submit" name="doorgaanbetalen" value="Doorgaan naar betalen" style="padding: 12px 32px;background: #686ef7;border-radius: 8px;color: white">
+		</form>
+	</div>
+</div>
 
 <?php
 include __DIR__ . "/footer.php";

@@ -556,3 +556,8 @@ ul#ul-class-price li {
     vertical-align: 100%;
     margin-left: -10px;
 }
+
+input[type=radio] {
+    width: 15px;
+    height: 15px;
+}
