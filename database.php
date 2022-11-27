@@ -98,8 +98,7 @@ function getStockItemImage($id, $databaseConnection) {
 
 function getVoorraadTekst($actueleVoorraad) {
     if ($actueleVoorraad > 1000) {
-//        return "Ruime voorraad beschikbaar.";
-        return $actueleVoorraad;
+        return "Ruime voorraad beschikbaar.";
     } elseif ($actueleVoorraad <= 0) {
         return "Geen voorraad beschikbaar";
     } else {
