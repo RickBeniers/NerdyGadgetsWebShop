@@ -2,6 +2,8 @@
 <?php
 include __DIR__ . "/header.php";
 
+
+
 $ReturnableResult = null;
 $Sort = "SellPrice";
 $SortName = "price_low_high";
@@ -232,235 +234,253 @@ $amount = $Result[0];
 if (isset($amount)) {
     $AmountOfPages = ceil($amount["count(*)"] / $ProductsOnPage);
 }
-//Onze code
-function getVoorraadTekst($actueleVoorraad) {
-    if ($actueleVoorraad > 1000) {
-        return "Ruime voorraad beschikbaar.";
-    } elseif ($actueleVoorraad <= 0) {
-        return "Geen voorraad beschikbaar";
-    } else {
-        return "Voorraad: $actueleVoorraad";
-    }
-}
-
-//Originele code
-//    function getVoorraadTekst($actueleVoorraad) {
-//        if ($actueleVoorraad > 1000) {
-//            return "Ruime voorraad beschikbaar.";
-//        } else {
-//            return "Voorraad: $actueleVoorraad";
-//        }
-//    }
-function berekenVerkoopPrijs($adviesPrijs, $btw) {
-    return $btw * $adviesPrijs / 100 + $adviesPrijs;
-}
 ?>
 
 <!-- code deel 3 van User story: Zoeken producten : de html -->
-<!-- de zoekbalk links op de pagina  -->
 
-<div id="FilterFrame"><h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
-    <form>
-        <div id="FilterOptions">
-            <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
-            <input type="text" name="search_string" id="search_string"
-                   value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
-                   class="form-submit">
-            <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i> Aantal producten op pagina</h4>
+<!-- Filtersidebar  -->
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+                <form>
+                    <div id="FilterOptions">
+                        <!-- Zoeken in browse.php -->
+                        <h5 class="FilterTopMargin">Zoeken</h5>
+                        <input type="text" name="search_string" id="search_string"
+                               value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
+                               class="input-group form-control" placeholder="Productnaam" style="height: 48px;border-radius: 8px;background-color: #efefef;border: unset">
 
-            <input type="hidden" name="category_id" id="category_id"
-                   value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
-            <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
-                <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
-                    print "selected";
-                } ?>>25
-                </option>
-                <option value="50" <?php if ($_SESSION['products_on_page'] == 50) {
-                    print "selected";
-                } ?>>50
-                </option>
-                <option value="75" <?php if ($_SESSION['products_on_page'] == 75) {
-                    print "selected";
-                } ?>>75
-                </option>
-            </select>
-            <h4 class="FilterTopMargin"><i class="fas fa-sort"></i> Sorteren</h4>
-            <select name="sort" id="sort" onchange="this.form.submit()">>
-                <option value="price_low_high" <?php if ($_SESSION['sort'] == "price_low_high") {
-                    print "selected";
-                } ?>>Prijs oplopend
-                </option>
-                <option value="price_high_low" <?php if ($_SESSION['sort'] == "price_high_low") {
-                    print "selected";
-                } ?> >Prijs aflopend
-                </option>
-                <option value="name_low_high" <?php if ($_SESSION['sort'] == "name_low_high") {
-                    print "selected";
-                } ?>>Naam oplopend
-                </option>
-                <option value="name_high_low" <?php if ($_SESSION['sort'] == "name_high_low") {
-                    print "selected";
-                } ?>>Naam aflopend
-                </option>
-            </select>
+                        <!-- Aantal producten per pagina -->
+                        <h5 class="FilterTopMargin">Aantal op pagina</h5>
+                        <input type="hidden" class="input-group form-control form-select" style="height: 48px;border-radius: 8px" name="category_id" id="category_id"
+                               value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
+                        <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
+                            <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
+                                print "selected";
+                            } ?>>25
+                            </option>
+                            <option value="50" <?php if ($_SESSION['products_on_page'] == 50) {
+                                print "selected";
+                            } ?>>50
+                            </option>
+                            <option value="75" <?php if ($_SESSION['products_on_page'] == 75) {
+                                print "selected";
+                            } ?>>75
+                            </option>
+                        </select>
 
+                        <!-- Producten sorteren op pagina -->
+                        <h5 class="FilterTopMargin">Sorteren</h5>
+                        <select name="sort" class="input-group rounded" id="sort" onchange="this.form.submit()">>
+                            <option value="price_low_high" <?php if ($_SESSION['sort'] == "price_low_high") {
+                                print "selected";
+                            } ?>>Prijs oplopend
+                            </option>
+                            <option value="price_high_low" <?php if ($_SESSION['sort'] == "price_high_low") {
+                                print "selected";
+                            } ?> >Prijs aflopend
+                            </option>
+                            <option value="name_low_high" <?php if ($_SESSION['sort'] == "name_low_high") {
+                                print "selected";
+                            } ?>>Naam oplopend
+                            </option>
+                            <option value="name_high_low" <?php if ($_SESSION['sort'] == "name_high_low") {
+                                print "selected";
+                            } ?>>Naam aflopend
+                            </option>
+                        </select>
 
-            <!-- Start zelf code toegevoegd 4 -->
-            <?php
-            $Colorname = [];
-            ?>
+                        <!-- Producten filteren op kleur (Zelf toegevoegd (4)) -->
+                        <?php
+                        $Colorname = [];
+                        ?>
 
+                        <h5 class="FilterTopMargin">Kleur</h5>
+                        <select name="color" id="color" class="input-group rounded" onchange="this.form.submit()">
+                            <?php
+                            $Query = "SELECT ColorID, Colorname FROM colors";
+                            $result = mysqli_query($databaseConnection, $Query);
+                            print("TEST HIERO");
+                            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+                            {
+                                $Colorname[$row["ColorID"]] = $row["Colorname"];
 
+                            }
+                            //                                print_r($Colorname);
 
+                            if(isset($SortcolorID)){
+                                if($SortcolorID == "geen_kleur"){
+                                    print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
+                                    foreach($Colorname as $ColorID => $name){
+                                        if($ColorID != $SortcolorID){
+                                            print("<option value="."$ColorID".">"."$name"."</option>");
+                                        }
+                                    }
+                                }else{
+                                    print("<option value="."$SortcolorID".">"."$Colorname[$SortcolorID]"."</option>");
+                                    print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
+                                    foreach($Colorname as $ColorID => $name){
+                                        if($ColorID != $SortcolorID){
+                                            print("<option value="."$ColorID".">"."$name"."</option>");
+                                        }
+                                    }
+                                }
+                            }else{
+                                print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
+                                foreach($Colorname as $ColorID => $name){
+                                    print("<option value="."$ColorID".">"."$name"."</option>");
+                                }
+                            }
 
-            <h4 class="FilterTopMargin"><i class="fas fa-sort"></i>Kleur</h4>
-            <select name="color" id="color" onchange="this.form.submit()">
+                            ?>
+                        </select>
+                </form>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="container" style="padding: 12px">
+            <div id="ResultsArea row" style="">
+
                 <?php
-                $Query = "SELECT ColorID, Colorname FROM colors";
-                $result = mysqli_query($databaseConnection, $Query);
-                print("TEST HIERO");
-                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-                {
-                    $Colorname[$row["ColorID"]] = $row["Colorname"];
-
-                }
-                //                                print_r($Colorname);
-
-                if(isset($SortcolorID)){
-                    if($SortcolorID == "geen_kleur"){
-                        print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
-                        foreach($Colorname as $ColorID => $name){
-                            if($ColorID != $SortcolorID){
-                                print("<option value="."$ColorID".">"."$name"."</option>");
-                            }
-                        }
-                    }else{
-                        print("<option value="."$SortcolorID".">"."$Colorname[$SortcolorID]"."</option>");
-                        print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
-                        foreach($Colorname as $ColorID => $name){
-                            if($ColorID != $SortcolorID){
-                                print("<option value="."$ColorID".">"."$name"."</option>");
-                            }
-                        }
-                    }
-                }else{
-                    print("<option value='"."geen_kleur"."'>"."Geen kleur"."</option>");
-                    foreach($Colorname as $ColorID => $name){
-                        print("<option value="."$ColorID".">"."$name"."</option>");
-                    }
-                }
-
-
-
-
-
+                if (isset($ReturnableResult) && count($ReturnableResult) > 0) {
+                foreach ($ReturnableResult as $row) {
                 ?>
-            </select>
-            <!-- Tests -->
-            <?php
-            //            print("ZOEK HIERO: ");
-            //            $print = $_GET['color'];
-            //            print($print);
-            //            print($queryBuildResult);
-            //SI.SearchDetails LIKE '%shirt%' OR SI.StockItemID ='shirt' AND
-            //            print($_SESSION["SortcolorID"]);
-            //            print($SortcolorID);
-            //            $_SESSION["$queryBuildResult"]=$queryBuildResult;
-            ?>
-            <!-- Einde zelf code toegevoegd 4 -->
 
+                        <!-- Producten inladen -->
+                        <a class="row" style="margin-top: 24px;border-bottom: 1px solid lightgrey" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 
+                                <!-- Artikelplaatje -->
+                                <?php if (isset($row['ImagePath'])) {?>
 
-    </form>
-</div>
-</div>
+                                <div class="col-3" style="height: 200px;border-radius: 8px;background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
 
+                                <!-- Backupplaatje -->
+                                <?php } else if (isset($row['BackupImagePath'])) { ?>
 
+                                <div class="col-3" style="height: 200px;border-radius: 8px;background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
 
-<!-- einde zoekresultaten die links van de zoekbalk staan -->
-<!-- einde code deel 3 van User story: Zoeken producten  -->
+                                <?php } ?>
 
-<div id="ResultsArea" class="Browse">
-    <?php
-    if (isset($ReturnableResult) && count($ReturnableResult) > 0) {
-        foreach ($ReturnableResult as $row) {
-            ?>
-            <!--  coderegel 1 van User story: bekijken producten  -->
-            <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
+                            <!-- Artikelinformatie -->
+                            <div class="col-6" style="">
 
+                                <!-- Artikelnummer -->
+                                <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
 
-                <!-- einde coderegel 1 van User story: bekijken producten   -->
-                <div id="ProductFrame">
+                                <!-- Artikelnaam -->
+                                <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
+
+                                <!-- Artikeluitleg -->
+                                <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
+
+                                <!-- Artikelvoorraad -->
+                                <h4 class="ItemQuantity"><?php print getVoorraadTekst($row["QuantityOnHand"]); ?></h4>
+                            </div>
+
+                            <!-- Prijsinformatie -->
+                            <div class="col-3" style="padding: unset;text-align:right;margin-top: 12px">
+                                <div class="">
+                                    <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
+                                    <h6>Inclusief BTW </h6>
+                                </div>
+
+                                <!-- Button -> Product toevoegen aan winkelwagen -->
+                                <div style="display:flex;justify-content:flex-end;align-items:flex-end;margin-top: 88px">
+                                    <form>
+                                        <button type="submit" style="height: 48px;width: 48px;border: unset;color: black;background-color: unset;border-radius: 8px" <i class="fas fa-heart"></i></button>
+                                        <button type="submit" style="height: 48px;width: 64px;border: unset;background-color: seagreen;color: white;border-radius: 8px" <i class="fas fa-shopping-cart"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Lijn onder product als je door de catelogus scrolt -->
+                            <div style="color: white">
+                                 d
+                            </div>
+
+                        </a>
+
                     <?php
-                    if (isset($row['ImagePath'])) { ?>
-                        <div class="ImgFrame"
-                             style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
-                    <?php } else if (isset($row['BackupImagePath'])) { ?>
-                        <div class="ImgFrame"
-                             style="background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
-                    <?php }
+                    }
                     ?>
 
-                    <div id="StockItemFrameRight">
-                        <div class="CenterPriceLeftChild">
-                            <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
-                            <h6>Inclusief BTW </h6>
-                        </div>
-                    </div>
-                    <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
-                    <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
-                    <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
-                    <h4 class="ItemQuantity"><?php print getVoorraadTekst($row["QuantityOnHand"]); ?></h4>
-                </div>
-                <!--  coderegel 2 van User story: bekijken producten  -->
-            </a>
+                    <form id="PageSelector">
 
+                        <!-- code deel 4 van User story: Zoeken producten  -->
 
-            <!--  einde coderegel 2 van User story: bekijken producten  -->
-        <?php } ?>
+                        <input type="hidden" name="search_string" id="search_string"
+                               value="<?php if (isset($_GET['search_string'])) {
+                                   print ($_GET['search_string']);
+                               } ?>">
+                        <input type="hidden" name="sort" id="sort" value="<?php print ($_SESSION['sort']); ?>">
 
-        <form id="PageSelector">
+                        <!-- einde code deel 4 van User story: Zoeken producten  -->
+                        <input type="hidden" name="category_id" id="category_id" value="<?php if (isset($_GET['category_id'])) {
+                            print ($_GET['category_id']);
+                        } ?>">
+                        <input type="hidden" name="result_page_numbers" id="result_page_numbers"
+                               value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
+                        <input type="hidden" name="products_on_page" id="products_on_page"
+                               value="<?php print ($_SESSION['products_on_page']); ?>">
 
-            <!-- code deel 4 van User story: Zoeken producten  -->
-
-            <input type="hidden" name="search_string" id="search_string"
-                   value="<?php if (isset($_GET['search_string'])) {
-                       print ($_GET['search_string']);
-                   } ?>">
-            <input type="hidden" name="sort" id="sort" value="<?php print ($_SESSION['sort']); ?>">
-
-            <!-- einde code deel 4 van User story: Zoeken producten  -->
-            <input type="hidden" name="category_id" id="category_id" value="<?php if (isset($_GET['category_id'])) {
-                print ($_GET['category_id']);
-            } ?>">
-            <input type="hidden" name="result_page_numbers" id="result_page_numbers"
-                   value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
-            <input type="hidden" name="products_on_page" id="products_on_page"
-                   value="<?php print ($_SESSION['products_on_page']); ?>">
-
-            <?php
-            if ($AmountOfPages > 0) {
-                for ($i = 1; $i <= $AmountOfPages; $i++) {
-                    if ($PageNumber == ($i - 1)) {
+                        <!-- Pagina-indicator -->
+                        <?php
+                        if ($AmountOfPages > 0) {
+                        for ($i = 1; $i <= $AmountOfPages; $i++) {
+                        if ($PageNumber == ($i - 1)) {
                         ?>
-                        <div id="SelectedPage"><?php print $i; ?></div><?php
-                    } else { ?>
-                        <button id="page_number" class="PageNumber" value="<?php print($i - 1); ?>" type="submit"
-                                name="page_number"><?php print($i); ?></button>
-                    <?php }
-                }
-            }
-            ?>
-        </form>
-        <?php
-    } else {
-        ?>
-        <h2 id="NoSearchResults">
-            Yarr, er zijn geen resultaten gevonden.
-        </h2>
-        <?php
-    }
-    ?>
+
+                                    <div id="SelectedPage"><?php print $i; ?></div>
+
+                                    <?php
+                                    } else {
+                                    ?>
+
+                                    <button id="page_number" class="PageNumber" value="<?php print($i - 1); ?>" type="submit"
+                                            name="page_number"><?php print($i); ?></button>
+
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
+
+                    </form>
+
+                    <?php
+                    } else {
+                    ?>
+
+                    <!-- Geen zoekresultaat -->
+                    <h2 id="NoSearchResults">
+                        Geen zoekresultaat
+                    </h2>
+                    <p id="NoSearchResults">
+                        Helaas hebben wij geen artikelen voor jouw zoekopdracht gevonden.
+                    </p>
+                    <p id="NoSearchResults">
+                        Wat kun je doen?
+                    </p>
+                    <ul id="NoSearchResults">
+                        <li>
+                            Controleer de spelling van jouw zoekopdracht
+                        </li>
+                        <li>
+                            Selecteer een andere kleur
+                        </li>
+                        <li>
+                            Zoek je informatie over onze zakelijke services? Klik dan hier
+                        </li>
+                    </ul>
+
+                    <?php
+                    }
+                    ?>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php

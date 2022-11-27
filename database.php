@@ -95,3 +95,19 @@ function getStockItemImage($id, $databaseConnection) {
 
     return $R;
 }
+
+function getVoorraadTekst($actueleVoorraad) {
+    if ($actueleVoorraad > 1000) {
+//        return "Ruime voorraad beschikbaar.";
+        return $actueleVoorraad;
+    } elseif ($actueleVoorraad <= 0) {
+        return "Geen voorraad beschikbaar";
+    } else {
+        return "Voorraad: $actueleVoorraad";
+    }
+}
+
+function berekenVerkoopPrijs($adviesPrijs, $btw) {
+    return $btw * $adviesPrijs / 100 + $adviesPrijs;
+}
+

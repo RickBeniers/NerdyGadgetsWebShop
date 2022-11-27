@@ -29,58 +29,131 @@ $databaseConnection = connectToDatabase();
     <!-- Javascript -->
     <script src="Public/JS/fontawesome.js"></script>
     <script src="Public/JS/jquery.min.js"></script>
-    <script src="Public/JS/bootstrap.min.js"></script>
+    <script src="Public/JS/bootstrap.js"></script>
     <script src="Public/JS/popper.min.js"></script>
     <script src="Public/JS/resizer.js"></script>
 
     <!-- Style sheets-->
     <link rel="stylesheet" href="Public/CSS/style.css" type="text/css">
-    <link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="Public/CSS/typekit.css">
+    <link rel="stylesheet" href="Public/CSS/bootstrap.css" type="text/css">
+<!--    <link rel="stylesheet" href="Public/CSS/typekit.css">-->
 </head>
 <body>
-<div class="Background">
-    <div class="row" id="Header">
-        <div class="col-2"><a href="./" id="LogoA">
-                <div id="LogoImage"></div>
-            </a></div>
-        <div class="col-8" id="CategoriesBar">
-            <ul id="ul-class">
+
+<!-- Top -->
+<div class="container-fluid" style="background-color: seagreen">
+    <div class="container" style="height: 32px">
+        <div class="row">
+            <div class="col-10">
+                <div style="height: 32px;display:flex;align-items:center">
+
+                    <!-- Moet los neerzetten, aangezien het niet in de database staat-->
+                    <!-- Checkmark -->
+                    <div>
+                        <i class="fas fa-check" style="color: white;font-size: 14px;margin-right: 4px"> </i>
+                    </div>
+
+                    <!-- Tekst -->
+                    <div style="color: white;font-size: 14px;margin-right: 16px">
+                        Voor <b>23:59</b> besteld, <b>morgen</b> in huis
+                    </div>
+
+                    <!-- Checkmark -->
+                    <div>
+                        <i class="fas fa-check" style="color: white;font-size: 14px;margin-right: 4px"> </i>
+                    </div>
+
+                    <!-- Tekst -->
+                    <div style="color: white;font-size: 14px;margin-right: 16px">
+                        <b>Gratis</b> verzending vanaf 20,-
+                    </div>
+
+                    <!-- Checkmark -->
+                    <div>
+                        <i class="fas fa-check" style="color: white;font-size: 14px;margin-right: 4px"> </i>
+                    </div>
+
+                    <!-- Tekst -->
+                    <div style="color: white;font-size: 14px;margin-right: 16px">
+                        <b>Gratis</b> retouneren
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div style="height: 32px;display:flex;justify-content:flex-end;align-items:center">
+                    <div style="color: white;font-size: 14px">
+                        Acties
+                    </div>
+
+                    <div style="margin-left: 16px;color: white;font-size: 14px">
+                        Zakelijk
+                    </div>
+
+                    <div style="margin-left: 16px;color: white;font-size: 14px">
+                        Klantenservice
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="container-fluid" style="background-color: #ffffff">
+    <div class="container" style="height: 64px">
+        <div class="row" style="height: 56px">
+            <div class="col-3" style="background-color: #ffffff;height: 64px;text-align: left">
+                <div style="height: 48px;width: 56px">
+                    <a href="./">
+                        <img src="Public/Img/NerdyGadgets.svg" alt="NerdyGadgets" style="height: 48px;margin-top: 8px">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-6" style="background-color: #ffffff;height: 64px;text-align: center">
+                <div class="input-group rounded">
+                    <input type="search" class="form-control" placeholder="Waar ben je naar opzoek?" aria-label="Search" aria-describedby="search-addon" style="height: 48px;margin-top: 8px;border-top-right-radius: unset ;border-bottom-right-radius: unset;border-top-left-radius: 8px ;border-bottom-left-radius: 8px;background-color: #efefef;border: unset" />
+                    <form>
+                        <button type="submit" name="Zoeken" href="browse.php" class="fas fa-search" style="border: unset;margin-top: 8px;height: 48px;width: 48px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;background-color: #efefef;font-size: 20px"><i style="color: #242424"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-3" style="background-color: #ffffff;text-align: right;height: 64px;">
+                <a href="#" class="HrefDecoration"><i class="fas fa-user" style="padding: 14px 15.25px;font-size: 20px;margin-left: unset;;color: #242424"></i></a>
+                <a href="#" class="HrefDecoration"><i class="fas fa-heart heart" style="padding: 14px 14px;font-size: 20px;margin-left: unset;margin-top: 8px;color: #242424"></i></a>
+                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart" style="padding: 14px 12.75px;font-size: 20px;margin-left: unset;color: #242424;margin-right: 12px"></i></a>
+                <span class="badge badge-warning" id="lblCartCount">
+                    <?php
+                    if (isset($_SESSION['aantalInWinkelmand'])) {
+                        print($_SESSION['aantalInWinkelmand']);
+                    } else {
+                        echo "0";
+                    } ?>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="container-fluid" style="background-color: white;border-bottom: solid 1px lightgrey">
+    <div class="container" style="height: 48px;display:flex;align-items:center;background-color: white;">
+        <div class="row">
+            <div class="col" style="display:flex;align-items:center;height:40px;">
                 <?php
                 $HeaderStockGroups = getHeaderStockGroups($databaseConnection);
 
                 foreach ($HeaderStockGroups as $HeaderStockGroup) {
                     ?>
-                    <li>
-                        <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
+                    <li style="list-style-type: none;margin-right: 24px">
+                        <a style="text-decoration: none;color: black" href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
                            class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
                     </li>
                     <?php
                 }
                 ?>
-                <li>
-                    <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
-                </li>
-            </ul>
+            </div>
         </div>
-<!-- code voor US3: zoeken -->
-        <ul id="ul-class-navigation">
-            <li>
-                <a href="cart.php" class="HrefDecoration"><i class="fas fa-shopping-cart winkelmandje"></i></a>
-	            <span class="badge badge-warning" id="lblCartCount"> <?php
-		            if (isset($_SESSION['aantalInWinkelmand'])) {
-		            print($_SESSION['aantalInWinkelmand']);
-		            } else {
-						echo "0";
-		            } ?>
-		             </span>
-                <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
-            </li>
-        </ul>
-<!-- einde code voor US3 zoeken -->
     </div>
-    <div class="row" id="Content">
-        <div class="col-12">
-            <div id="SubContent">
-
-
+</div>
