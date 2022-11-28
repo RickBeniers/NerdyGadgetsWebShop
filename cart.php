@@ -188,7 +188,7 @@ $cart = getCart();
 <!--            <h5>Testing: --><?php //print(addProductToCart(76, 1000000000000, $databaseConnection));?><!--</h5>-->
 
             <!-- RUSH -> BUTTON KAN NOG ANDERS -->
-            <form>
+            <form action="bestelling.php">
                 <button type="submit" name="doorgaan" style="border: unset;height: 48px;width: 100%;background-color: seagreen;color: white;border-radius: 8px">Doorgaan naar bestellen</button>
             </form>
         </div>
