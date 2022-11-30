@@ -112,9 +112,9 @@ $databaseConnection = connectToDatabase();
 
             <div class="col-6" style="background-color: #ffffff;height: 64px;text-align: center">
                 <div class="input-group rounded">
-                    <input type="search" class="form-control" placeholder="Waar ben je naar opzoek?" aria-label="Search" aria-describedby="search-addon" style="height: 48px;margin-top: 8px;border-top-right-radius: unset ;border-bottom-right-radius: unset;border-top-left-radius: 8px ;border-bottom-left-radius: 8px;background-color: #efefef;border: unset" />
-                    <form>
-                        <button type="submit" name="Zoeken" href="browse.php" class="fas fa-search" style="border: unset;margin-top: 8px;height: 48px;width: 48px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;background-color: #efefef;font-size: 20px"><i style="color: #242424"></i></button>
+                    <form action="browse.php">
+                        <input type="search" name="searchbarHeader" class="form-control" placeholder="Waar ben je naar opzoek?" aria-label="Search" aria-describedby="search-addon" style="height: 48px;margin-top: 8px;border-top-right-radius: unset ;border-bottom-right-radius: unset;border-top-left-radius: 8px ;border-bottom-left-radius: 8px;background-color: #efefef;border: unset" />
+                        <button type="submit" class="fas fa-search" style="border: unset;margin-top: 8px;height: 48px;width: 48px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;background-color: #efefef;font-size: 20px"><i style="color: #242424"></i></button>
                     </form>
                 </div>
             </div>

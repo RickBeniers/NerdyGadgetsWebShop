@@ -7,7 +7,7 @@ include __DIR__ . "/header.php";
 </div>
 
 	<div class="container" style="width: 50%">
-		<form>
+		<form action="gegevens.php" method="post">
 			<br>
 			<p>Aanhef</p>
 			<div class="form-group">
@@ -62,7 +62,7 @@ include __DIR__ . "/header.php";
 			</div><br><br>
 			<div class="row">
 				<div class="col">
-					<input type="submit" name="bestelknop" value="Bestellen en betalen" style="padding: 12px 32px;background: #686ef7;border-radius: 8px;color: white">
+					<input type="submit" value="Bestellen en betalen" style="padding: 12px 32px;background: #686ef7;border-radius: 8px;color: white">
 				</div>
 			</div>
 		</form>

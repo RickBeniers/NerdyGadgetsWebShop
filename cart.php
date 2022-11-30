@@ -90,7 +90,7 @@ $cart = getCart();
                 foreach ($result as $row) {
                 ?>
 
-                        <a class="" href='view.php?id=<?php print $row['StockItemID']; ?>'>
+
 
                             <!-- Standaard STYLE -> LATER VERWIJDEREN -->
                             <div class="row" style="border: lightgrey 1px solid;padding: 12px;margin-bottom: 12px;border-radius: 8px">
@@ -98,12 +98,12 @@ $cart = getCart();
                                 <!-- Artikelplaatje -->
                                 <?php if (isset($row['ImagePath'])) { ?>
 
-                                    <div class="col-2" style="height:111.6px;border-radius: 8px;background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
+                                    <a href='view.php?id=<?php print $row['StockItemID']; ?>' class="col-2" style="height:111.6px;border-radius: 8px;background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></a>
 
                                     <!-- Backupplaatje -->
                                     <?php } else if (isset($row['BackupImagePath'])) { ?>
 
-                                    <div class="col-2" style="height:111.6px;border-radius: 8px;background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
+                                    <a href='view.php?id=<?php print $row['StockItemID']; ?>' class="col-2" style="height:111.6px;border-radius: 8px;background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></a>
 
                                 <?php
                                 }
@@ -129,11 +129,13 @@ $cart = getCart();
                                 <div class="col-5" style="margin-left:auto;padding: unset;text-align:right;">
                                     <!-- Productprijs -->
                                     <div id="" class="col" style="margin: unset">
-                                        <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
+                                        <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", $cart[$row["StockItemID"]]*berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
                                     </div>
 
                                     <!-- Aantal producten in winkelmand aanpassen -->
                                     <form action="cart.php" method="GET">
+                                        <button type="submit"  hidden></button>
+
                                         <!-- producten uit winkelmand verwijderen (knop)-->
                                         <button type="submit" name="delete" style="height: 48px;width: 48px;border: unset;border-radius: 8px;background-color: #721c24;color: white" <i class="fas fa-trash"></i></button>
 
@@ -151,7 +153,7 @@ $cart = getCart();
                                     </form>
                                 </div>
                             </div>
-                        </a>
+
 
                     <?php
                 }
