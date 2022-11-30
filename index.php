@@ -1,22 +1,44 @@
 <!-- dit is het bestand dat wordt geladen zodra je naar de website gaat -->
 <?php
 include __DIR__ . "/header.php";
+$StockGroups = getStockGroups($databaseConnection);
 ?>
-<div class="IndexStyle">
-    <div class="col-11">
-        <div class="TextPrice">
-            <a href="view.php?id=93">
-                <div class="TextMain">
-                    "The Gu" red shirt XML tag t-shirt (Black) M
-                </div>
-                <ul id="ul-class-price">
-                    <li class="HomePagePrice">€30.95</li>
-                </ul>
+
+<!-- Banner -->
+<div class="container">
+    <div class="row" style="padding: 12px">
+        <div class="col" style="height: 360px;border-radius: 16px;background-color: lightgrey">
+            <a href="./">
+<!--                <img src="Public/Img/Sale.jpg" alt="Korting" style="max-width: 100%;max-height: 100%">-->
+            </a>
         </div>
-        </a>
-        <div class="HomePageStockItemPicture"></div>
+    </div>
+
+    <!-- Categoriën -> Nog niet af! -->
+    <div class="row" style="height: 100px">
+        <div>
+            <?php if (isset($StockGroups)) {
+                $i = 0;
+                foreach ($StockGroups as $StockGroup) {
+                    if ($i < 6) {
+                        ?>
+                        <a href="<?php print "browse.php?category_id=";
+                        print $StockGroup["StockGroupID"]; ?>">
+                            <div id="StockGroup<?php print $i + 1; ?>"
+                                 style="background-image: url('Public/StockGroupIMG/<?php print $StockGroup["ImagePath"]; ?>')"
+                                 class="StockGroups">
+                                <h1><?php print $StockGroup["StockGroupName"]; ?></h1>
+                            </div>
+                        </a>
+                        <?php
+                    }
+                    $i++;
+                }
+            } ?>
+        </div>
     </div>
 </div>
+
 <?php
 include __DIR__ . "/footer.php";
 ?>
