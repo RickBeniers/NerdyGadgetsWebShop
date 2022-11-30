@@ -1,12 +1,11 @@
 <!-- dit bestand bevat alle code die verbinding maakt met de database -->
 <?php
-
 function connectToDatabase() {
     $Connection = null;
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions
     try {
-        $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+        $Connection = mysqli_connect("localhost", "root", "Rick3109", "nerdygadgets");
         mysqli_set_charset($Connection, 'latin1');
         $DatabaseAvailable = true;
     } catch (mysqli_sql_exception $e) {
@@ -19,7 +18,6 @@ function connectToDatabase() {
 
     return $Connection;
 }
-
 function getHeaderStockGroups($databaseConnection) {
     $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
@@ -34,7 +32,6 @@ function getHeaderStockGroups($databaseConnection) {
     $HeaderStockGroups = mysqli_stmt_get_result($Statement);
     return $HeaderStockGroups;
 }
-
 function getStockGroups($databaseConnection) {
     $Query = "
             SELECT StockGroupID, StockGroupName, ImagePath
@@ -50,7 +47,6 @@ function getStockGroups($databaseConnection) {
     $StockGroups = mysqli_fetch_all($Result, MYSQLI_ASSOC);
     return $StockGroups;
 }
-
 function getStockItem($id, $databaseConnection) {
     $Result = null;
 
@@ -79,7 +75,6 @@ function getStockItem($id, $databaseConnection) {
 
     return $Result;
 }
-
 function getStockItemImage($id, $databaseConnection) {
 
     $Query = "
@@ -95,7 +90,6 @@ function getStockItemImage($id, $databaseConnection) {
 
     return $R;
 }
-
 function getVoorraadTekst($actueleVoorraad) {
     if ($actueleVoorraad > 1000) {
         return "Ruime voorraad beschikbaar.";
@@ -109,4 +103,11 @@ function getVoorraadTekst($actueleVoorraad) {
 function berekenVerkoopPrijs($adviesPrijs, $btw) {
     return $btw * $adviesPrijs / 100 + $adviesPrijs;
 }
+function changeQuantityOnHand($QuantityOnHandPar, $StockItemIdPar, $databaseConnection){
+    $sql = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - ?
+            WHERE stockItemId = ?;";
 
+    $Statement = mysqli_prepare($databaseConnection, $sql);
+    mysqli_stmt_bind_param($Statement, "ii", $QuantityOnHandPar, $StockItemIdPar);
+    mysqli_stmt_execute($Statement);
+}

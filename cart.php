@@ -1,6 +1,7 @@
 <!-- dit bestand bevat alle code voor de winkelmand functionaliteit -->
 <?php
 //session_start();
+
 session_start();
 include_once "database.php";
 include_once "Cartfuncties.php";
@@ -28,12 +29,12 @@ if (isset($_GET["delete"])) {
 	deleteProductFromCart($_GET['id']);
 }
 
+
 include __DIR__ . "/header.php";
 //totaalprijs berekenen + tonen van de totaalprijs
 $cart = getCart();
 
 ?>
-
 <!-- Winkelwagen Header -->
 <div class="container">
     <div class="row" style="background-color: rgba(128,128,128,0);height: 56px">
@@ -43,7 +44,6 @@ $cart = getCart();
         </div>
     </div>
 </div>
-
 <!-- PRODUCTEN TONEN -->
 <div class="container">
     <div class="row" style="background-color: rgba(0,128,0,0)">
@@ -82,14 +82,11 @@ $cart = getCart();
                 $result = mysqli_query($Connection, $Query);
             }
             ?>
-
             <!-- Producten tonen in winkelwagen -> LAAT HIER STAAN -> anders verspringt de prijssidebar -->
-
                 <?php
                 if (isset($result)) {
                 foreach ($result as $row) {
                 ?>
-
                         <a class="" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 
                             <!-- Standaard STYLE -> LATER VERWIJDEREN -->
