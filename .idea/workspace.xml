@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="reinout_v3.3">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nerdygadgets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nerdygadgets.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="reinout_v4.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bestelling.php" beforeDir="false" afterPath="$PROJECT_DIR$/bestelling.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +85,7 @@
       <workItem from="1669635485193" duration="1021000" />
       <workItem from="1669719753963" duration="14276000" />
       <workItem from="1669796507665" duration="3869000" />
+      <workItem from="1669810390874" duration="75000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1668594724851</created>
@@ -160,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669635818162</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="reinout_v4.0">
+      <created>1669803752997</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669803752997</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +203,7 @@
     <MESSAGE value="reinout_v2.1" />
     <MESSAGE value="reinout_v3.1" />
     <MESSAGE value="reinout_v3.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="reinout_v3.2" />
+    <MESSAGE value="reinout_v4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="reinout_v4.0" />
   </component>
 </project>

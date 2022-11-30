@@ -40,8 +40,8 @@ $databaseConnection = connectToDatabase();
 </head>
 <body>
 
-<!-- Top -->
-<div class="container-fluid" style="background-color: seagreen">
+<!-- Top seagreen original bg-color-->
+<div class="container-fluid" style="background-color: yellow">
     <div class="container" style="height: 32px">
         <div class="row">
             <div class="col-10">
