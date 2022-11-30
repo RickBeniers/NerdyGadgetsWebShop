@@ -1,5 +1,7 @@
 <?php
-//session_start();                                // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
+if (session_status() == PHP_SESSION_NONE) { // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
+    session_start();
+}
 
 function getCart(){
     if(isset($_SESSION['cart'])){               //controleren of winkelmandje (=cart) al bestaat
@@ -33,22 +35,33 @@ function getVoorraad($stockItemID, $databaseConnection){
     return $voorraad;
 }
 
-function checkVoorraad($stockItemID, $aantal, $databaseConnection){
+function checkVoorraad($stockItemID, $aantal, $databaseConnection, $switch){
     $voorraad = getVoorraad($stockItemID, $databaseConnection);
     $cart = getCart();
     $cartAantal=0;
     if(isset($cart[$stockItemID])){ //check of er iets in de cart zit zo ja: $cartAantal is die hoeveelheid.
         $cartAantal=$cart[$stockItemID];
     }
-    if($voorraad>=($cartAantal+$aantal)){
-        return 1; //voorraad groter, je kan toevoegen.
+    //Check of er + - wordt gedaan of dat er een exacte waarde wordt opgegeven voor $aantal (changecart wordt gebruikt)
+    if($switch){
+        if($voorraad>=($aantal)){
+            return 1; //voorraad groter, je kan toevoegen.
+        }else{
+            return 0; //voorraad is te klein, je kan geen product extra toevoegen
+        }
     }else{
-        return 0; //voorraad is te klein, je kan geen product extra toevoegen
+        if($voorraad>=($cartAantal+$aantal)){
+            return 1; //voorraad groter, je kan toevoegen.
+        }else{
+            return 0; //voorraad is te klein, je kan geen product extra toevoegen
+        }
     }
 }
+
+
 function changeCart($stockItemID, $aantal, $databaseConnection){
     $cart = getCart();
-    if(checkVoorraad($stockItemID, $aantal, $databaseConnection)){  //is de voorraad hoger dan dat er bestelt gaat worden?
+    if(checkVoorraad($stockItemID, $aantal, $databaseConnection, true)){  //is de voorraad hoger dan dat er bestelt gaat worden?
         $cart[$stockItemID] = $aantal;
     }
     saveCart($cart);                                 // werk de "gedeelde" $_SESSION["cart"] bij met de bijgewerkte cart
@@ -60,7 +73,7 @@ function changeCart($stockItemID, $aantal, $databaseConnection){
 function addProductToCart($stockItemID, $aantal, $databaseConnection){
     $cart = getCart();                          // eerst de huidige cart ophalen
     $voorraad = getVoorraad($stockItemID, $databaseConnection); //Haal voorraad op
-    if(checkVoorraad($stockItemID, $aantal, $databaseConnection)){  //is de voorraad hoger dan dat er bestelt gaat worden?
+    if(checkVoorraad($stockItemID, $aantal, $databaseConnection, false)){  //is de voorraad hoger dan dat er bestelt gaat worden?
         if(array_key_exists($stockItemID, $cart)){  //controleren of $stockItemID(=key!) al in array staat
             $cart[$stockItemID] += $aantal;                   //zo ja:  aantal met 1 verhogen
         }else{

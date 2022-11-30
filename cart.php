@@ -1,14 +1,11 @@
 <!-- dit bestand bevat alle code voor de winkelmand functionaliteit -->
 <?php
-//session_start();
-session_start();
 include_once "database.php";
 include_once "Cartfuncties.php";
 
 
 //Waardes:
 $sql_cart_invoer = "";
-$databaseConnection = connectToDatabase();
 
 //aantal producten in winkelmand aanpassen (input field + "-" en "+" knoppen)
 if (!empty($_GET['hoeveel'])) {

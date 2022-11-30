@@ -1,6 +1,11 @@
 <!-- dit bestand bevat alle code die verbinding maakt met de database -->
 <?php
+if (session_status() == PHP_SESSION_NONE) { // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
+    session_start();
+}
+$databaseConnection = connectToDatabase();
 
+//Functions:
 function connectToDatabase() {
     $Connection = null;
 

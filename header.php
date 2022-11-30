@@ -1,6 +1,6 @@
 <!-- de inhoud van dit bestand wordt bovenaan elke pagina geplaatst -->
 <?php
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) { // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
 	session_start();
 }
 include_once "database.php";
@@ -19,7 +19,7 @@ if (isset($_SESSION['aantalInWinkelmand'])) {
 		$_SESSION['aantalInWinkelmand'] = $aantal;
 	}
 }
-$databaseConnection = connectToDatabase();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@ $databaseConnection = connectToDatabase();
 <body>
 
 <!-- Top seagreen original bg-color-->
-<div class="container-fluid" style="background-color: yellow">
+<div class="container-fluid" style="background-color: orange">
     <div class="container" style="height: 32px">
         <div class="row">
             <div class="col-10">
@@ -113,7 +113,7 @@ $databaseConnection = connectToDatabase();
             <div class="col-6" style="background-color: #ffffff;height: 64px;text-align: center">
                 <div class="input-group rounded">
                     <form action="browse.php">
-                        <input type="search" name="searchbarHeader" class="form-control" placeholder="Waar ben je naar opzoek?" aria-label="Search" aria-describedby="search-addon" style="height: 48px;margin-top: 8px;border-top-right-radius: unset ;border-bottom-right-radius: unset;border-top-left-radius: 8px ;border-bottom-left-radius: 8px;background-color: #efefef;border: unset" />
+                        <input type="search" name="searchbarHeader" class="form-control" placeholder="Waar ben je naar opzoek?" aria-label="Search" aria-describedby="search-addon" style="height: 48px;margin-top: 8px;border-top-right-radius: unset ;border-bottom-right-radius: unset;border-top-left-radius: 8px ;border-bottom-left-radius: 8px;background-color: #efefef;border: unset"/>
                         <button type="submit" class="fas fa-search" style="border: unset;margin-top: 8px;height: 48px;width: 48px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;background-color: #efefef;font-size: 20px"><i style="color: #242424"></i></button>
                     </form>
                 </div>

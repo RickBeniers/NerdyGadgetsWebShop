@@ -1,5 +1,15 @@
 <!-- dit bestand bevat alle code voor het productoverzicht -->
 <?php
+
+include_once "database.php";
+include_once "Cartfuncties.php";
+
+//Add to cart button
+if(isset($_GET["addToCart"])){
+    addProductToCart($_GET["addToCart"], 1, $databaseConnection);
+}
+//End add to cart button
+
 include __DIR__ . "/header.php";
 
 
@@ -10,6 +20,10 @@ $SortName = "price_low_high";
 
 $AmountOfPages = 0;
 $queryBuildResult = "";
+
+
+
+
 
 
 //         Start zelf code toegevoegd 1
@@ -31,7 +45,10 @@ if (isset($_GET['color'])) {
 
 if (isset($_GET['category_id'])) {
     $CategoryID = $_GET['category_id'];
-} else {
+    $_SESSION["CategoryID"]=$CategoryID;
+}elseif (isset($_SESSION["CategoryID"])){
+    $CategoryID=$_SESSION["CategoryID"];
+}else {
     $CategoryID = "";
 }
 if (isset($_GET['products_on_page'])) {
@@ -108,9 +125,6 @@ if($SortcolorID !== "geen_kleur"){
 
 }
 //Einde extra filter opties
-
-
-
 
 
 //SI.SearchDetails LIKE '%shirt%' OR SI.StockItemID ='shirt' AND
@@ -241,6 +255,11 @@ if (isset($amount)) {
 <!-- Filtersidebar  -->
 <div class="container">
     <div class="row">
+        <h4><?php
+            if(isset($_GET["addToCart"])){
+                print($_GET["addToCart"]);
+            }
+            ?></h4>
         <div class="col-3">
                 <form>
                     <div id="FilterOptions">
@@ -389,7 +408,7 @@ if (isset($amount)) {
                                 <div style="display:flex;justify-content:flex-end;align-items:flex-end;margin-top: 88px">
                                     <form>
                                         <button type="submit" style="height: 48px;width: 48px;border: unset;color: black;background-color: unset;border-radius: 8px" <i class="fas fa-heart"></i></button>
-                                        <button type="submit" style="height: 48px;width: 64px;border: unset;background-color: seagreen;color: white;border-radius: 8px" <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="submit" name='addToCart' value="<?php print($row["StockItemID"]) ?>" style="height: 48px;width: 64px;border: unset;background-color: seagreen;color: white;border-radius: 8px" <i class="fas fa-shopping-cart"></i></button>
                                     </form>
                                 </div>
                             </div>
