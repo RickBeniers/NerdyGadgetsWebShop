@@ -5,7 +5,7 @@ function connectToDatabase() {
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions
     try {
-        $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+        $Connection = mysqli_connect("localhost", "root", "Rick3109", "nerdygadgets");
         mysqli_set_charset($Connection, 'latin1');
         $DatabaseAvailable = true;
     } catch (mysqli_sql_exception $e) {
@@ -89,4 +89,16 @@ function getStockItemImage($id, $databaseConnection) {
     $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
 
     return $R;
+}
+function($QuantityOnHandPar, $StockItemIdPar, $databaseConnection){
+    $sql = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - ?
+            WHERE stockItemId = ?;";
+
+    $Statement = mysqli_prepare($databaseConnection, $sql);
+    mysqli_stmt_bind_param($Statement, "ii", $QuantityOnHandPar, $StockItemId);
+    mysqli_stmt_execute($Statement);
+    $R = mysqli_stmt_get_result($Statement);
+    $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+    Return $R;
 }
