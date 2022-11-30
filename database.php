@@ -90,15 +90,12 @@ function getStockItemImage($id, $databaseConnection) {
 
     return $R;
 }
-function($QuantityOnHandPar, $StockItemIdPar, $databaseConnection){
+
+function changeQuantityOnHand($QuantityOnHandPar, $StockItemIdPar, $databaseConnection){
     $sql = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - ?
             WHERE stockItemId = ?;";
 
     $Statement = mysqli_prepare($databaseConnection, $sql);
-    mysqli_stmt_bind_param($Statement, "ii", $QuantityOnHandPar, $StockItemId);
+    mysqli_stmt_bind_param($Statement, "ii", $QuantityOnHandPar, $StockItemIdPar);
     mysqli_stmt_execute($Statement);
-    $R = mysqli_stmt_get_result($Statement);
-    $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
-
-    Return $R;
 }
