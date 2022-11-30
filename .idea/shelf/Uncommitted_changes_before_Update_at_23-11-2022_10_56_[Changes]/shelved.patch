@@ -1,0 +1,80 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3bd40800-52b0-45bb-86f3-229fc08668e2\" name=\"Changes\" comment=\"v6\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Public/CSS/style.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Public/CSS/style.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cart.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cart.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"NerdyGadgets/Reinout\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP\" />\r\n  <component name=\"ProjectId\" id=\"2HaNTEL1X2MfU3liaBrbrUOEtmf\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/Software/Xampp/htdocs/nerdygadgets OLD/browse.php&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3bd40800-52b0-45bb-86f3-229fc08668e2\" name=\"Changes\" comment=\"\" />\r\n      <created>1668519240808</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1668519240808</updated>\r\n      <workItem from=\"1668519241965\" duration=\"5872000\" />\r\n      <workItem from=\"1668584217697\" duration=\"6408000\" />\r\n      <workItem from=\"1668591099486\" duration=\"3566000\" />\r\n      <workItem from=\"1668602653823\" duration=\"4532000\" />\r\n      <workItem from=\"1668670445034\" duration=\"6483000\" />\r\n      <workItem from=\"1668677668627\" duration=\"1146000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"v1\">\r\n      <created>1668594724851</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668594724851</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"v4\">\r\n      <created>1668604770812</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668604770812</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"v4\">\r\n      <created>1668605727126</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668605727126</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"v5\">\r\n      <created>1668606276181</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668606276181</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"v6\">\r\n      <created>1668606731053</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668606731053</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"v1\" />\r\n    <MESSAGE value=\"v4\" />\r\n    <MESSAGE value=\"v5\" />\r\n    <MESSAGE value=\"v6\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"v6\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision db5f5b372be0e473d31c9f545766ae929b8fe26a)
++++ b/.idea/workspace.xml	(date 1668686418676)
+@@ -1,10 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="v6">
++    <list default="true" id="3bd40800-52b0-45bb-86f3-229fc08668e2" name="Changes" comment="v7">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Public/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Public/CSS/style.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -55,6 +53,11 @@
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
++  <component name="Push.Settings">
++    <force-push-targets>
++      <force-push-target remote-path="NerdyGadgets" branch="Reinout" />
++    </force-push-targets>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -68,7 +71,9 @@
+       <workItem from="1668591099486" duration="3566000" />
+       <workItem from="1668602653823" duration="4532000" />
+       <workItem from="1668670445034" duration="6483000" />
+-      <workItem from="1668677668627" duration="1146000" />
++      <workItem from="1668677668627" duration="1256000" />
++      <workItem from="1668679131565" duration="667000" />
++      <workItem from="1668686386525" duration="32000" />
+     </task>
+     <task id="LOCAL-00001" summary="v1">
+       <created>1668594724851</created>
+@@ -105,7 +110,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1668606731053</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="v7">
++      <created>1668678875804</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1668678875804</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -122,7 +134,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="master" />
++                        <option value="NerdyGadgets/main" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -139,6 +151,7 @@
+     <MESSAGE value="v4" />
+     <MESSAGE value="v5" />
+     <MESSAGE value="v6" />
+-    <option name="LAST_COMMIT_MESSAGE" value="v6" />
++    <MESSAGE value="v7" />
++    <option name="LAST_COMMIT_MESSAGE" value="v7" />
+   </component>
+ </project>
+\ No newline at end of file
